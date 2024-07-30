@@ -19,7 +19,8 @@ body {
 }
 .products {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Garante que os produtos não quebrem linha */
+    overflow-x: auto; /* Permite rolagem horizontal se necessário */
     gap: 10px;
 }
 .product {
@@ -27,10 +28,10 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 200px; /* Largura ajustada para produtos verticais */
     height: 400px; /* Altura ajustada para produtos verticais */
     box-sizing: border-box;
+    flex-shrink: 0; /* Impede que o produto encolha */
     display: flex;
     flex-direction: column; /* Garante que o conteúdo fique verticalmente alinhado */
     justify-content: space-between; /* Espaça o conteúdo verticalmente */
@@ -49,14 +50,14 @@ body {
     font-size: 0.875em;
     color: #666;
 }
-@media (max-width: 420px) {
+@media (max-width: 768px) {
     .products {
+        flex-wrap: wrap; /* Permite que os produtos quebrem linha em telas menores */
         justify-content: center; /* Centraliza os produtos em telas menores */
     }
     .product {
-        width: calc(100% - 20px); /* Ajusta para toda a largura disponível com espaçamento */
-        height: auto; /* Permite que a altura se ajuste conforme o conteúdo */
-        margin: auto 0; /* Ajusta o espaçamento vertical */
+        width: calc(50% - 10px); /* Ajusta a largura para dois produtos lado a lado em telas menores */
+        margin: 10px 0; /* Ajusta o espaçamento vertical */
     }
     .product img {
         height: 200px; /* Ajusta a altura da imagem para melhor visualização em telas menores */
